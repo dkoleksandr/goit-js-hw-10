@@ -1,9 +1,7 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
-import iziToast from "izitoast";
-import "izitoast/dist/css/iziToast.min.css";
-
-
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 let userSelectedDate = Date.now();
 
@@ -18,42 +16,37 @@ const secondsValue = document.querySelector('.value[data-seconds]');
 
 const options = {
   enableTime: true,
-  enableSeconds: true,
+  // enableSeconds: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(selectedDates[0]);
-    console.log('curentDate->', Date.now());
-
     if (selectedDates[0] <= Date.now()) {
       buttonStart.setAttribute('disabled', '');
       iziToast.show({
         message: 'Please choose a date in the future',
         color: 'red',
         position: 'topRight',
-    });
-
+      });
       return;
     }
+
     userSelectedDate = selectedDates[0];
     buttonStart.removeAttribute('disabled');
-    console.log('selec', userSelectedDate);
   },
 };
 
 flatpickr('input#datetime-picker', options);
 
 function handleStart() {
-  console.log(Date.now(), '<<<<<<<-curentDate')
   if (userSelectedDate <= Date.now()) {
     return;
   }
+
   buttonStart.setAttribute('disabled', '');
   inputDate.setAttribute('disabled', '');
 
   let intervalId = setInterval(() => {
-    console.log(Math.random());
     const realTime = Date.now();
     const restTime = userSelectedDate - realTime;
     if (restTime <= 0) {
@@ -62,6 +55,7 @@ function handleStart() {
     }
 
     const { days, hours, minutes, seconds } = convertMs(restTime);
+
     daysValue.textContent = addLeadingZero(days);
     hoursValue.textContent = addLeadingZero(hours);
     minutesValue.textContent = addLeadingZero(minutes);
@@ -89,6 +83,5 @@ function convertMs(ms) {
 }
 
 function addLeadingZero(value) {
-  return String(value).padStart(2, "0");
+  return String(value).padStart(2, '0');
 }
-
