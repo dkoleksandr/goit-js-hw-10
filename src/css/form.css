@@ -1,0 +1,50 @@
+.feedback-form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .feedback-form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .feedback-form input[type="email"],
+  .feedback-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .feedback-form input[type="email"]:hover,
+  .feedback-form textarea:hover {
+    border-color: #000;
+  }
+  
+  .feedback-form input[type="email"]:focus,
+  .feedback-form textarea:focus {
+    border-color: #ccc;
+  }
+  
+  .feedback-form input[type="email"]:focus,
+  .feedback-form textarea:focus {
+    outline: none;
+  }
+  
+  
+  
+  .feedback-form button[type="submit"] {
+    background-color: #4E75FF;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .feedback-form button[type="submit"]:hover {
+    background-color: #6C8CFF;
+  }
+  
+
+  
