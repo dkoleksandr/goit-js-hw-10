@@ -8,12 +8,15 @@ function handleSubmit(event) {
   event.preventDefault();
 
   const delay = event.target[0].value;
+  const stateValue = event.target.elements.state.value;
 
   const promise = new Promise((resolve, reject) => {
-    if (event.target.elements.state.value === 'fulfilled') {
-      resolve(delay);
-    }
-    reject(delay);
+    setTimeout(() => {
+      if (stateValue === 'fulfilled') {
+        resolve(delay);
+      }
+      reject(delay);
+    }, delay);
   });
 
   form.reset();
