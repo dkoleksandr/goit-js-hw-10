@@ -8,10 +8,26 @@ function handleSubmit(event) {
   event.preventDefault();
 
   const delay = event.target[0].value;
+
+  const promise = new Promise((resolve, reject) => {
+    if (event.target.elements.state.value === 'fulfilled') {
+      resolve(delay);
+    }
+    reject(delay);
+  });
+
   form.reset();
-  
-  if (event.target.elements.state.value === 'rejected') {
-    return Promise.reject(
+
+  promise
+    .then(delay =>
+      iziToast.show({
+        timeout: delay,
+        message: `✅ Fulfilled promise in ${delay}ms`,
+        color: 'green',
+        position: 'topRight',
+      })
+    )
+    .catch(delay =>
       iziToast.show({
         timeout: delay,
         message: `❌ Rejected promise in ${delay}ms`,
@@ -19,15 +35,4 @@ function handleSubmit(event) {
         position: 'topRight',
       })
     );
-  }
-
-  return Promise.resolve(
-    iziToast.show({
-      timeout: delay,
-      message: `✅ Fulfilled promise in ${delay}ms`,
-      color: 'green',
-      position: 'topRight',
-    })
-  );
-
 }
